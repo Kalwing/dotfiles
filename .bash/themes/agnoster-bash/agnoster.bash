@@ -208,7 +208,7 @@ prompt_end() {
 ### virtualenv prompt
 prompt_virtualenv() {
     if [[ -n $VIRTUAL_ENV ]]; then
-        color=cyan
+        color=magenta
         prompt_segment $color $PRIMARY_FG
         prompt_segment $color white "$(basename $VIRTUAL_ENV)"
     fi

@@ -117,7 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 # VirtualEnv
-if [[ -n $(pip list | grep virtualenvwrapper) ]]; then
+if command -v "pip" && [[ -n $(pip list | grep virtualenvwrapper) ]]; then
     export VIRTUALENV_PYTHON=/usr/bin/python3.7
     export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7
     source ~/.local/bin/virtualenvwrapper.sh
