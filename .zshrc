@@ -102,7 +102,7 @@ alias zshconfig="vim ~/.zshrc"
 alias SD="workon SD; echo 'Starting SD session:'; cd ~/Documents/Cours/M1; jupyter-notebook"
 alias nano="vim"
 # Virtualenv
-if command -v 'pip' && [[ -n $(pip list | grep virtualenvwrapper) ]]; then
+if (( $+commands[pip])) && [[ -n $(pip list | grep virtualenvwrapper) ]]; then
      export VIRTUALENV_PYTHON=/usr/bin/python3.7
      export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7
      source ~/.local/bin/virtualenvwrapper.sh
