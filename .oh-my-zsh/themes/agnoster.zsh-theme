@@ -68,7 +68,7 @@ prompt_end() {
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path ]]; then
-    prompt_segment magenta white "$(basename $virtualenv_path) "
+    prompt_segment magenta black "$(basename $virtualenv_path) "
   fi
 }
 
