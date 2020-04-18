@@ -117,9 +117,16 @@ if ! shopt -oq posix; then
 fi
 
 # VirtualEnv
-export VIRTUALENV_PYTHON=/usr/bin/python3.7
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7
-source ~/.local/bin/virtualenvwrapper.sh
+if [[ -n $(pip list | grep virtualenvwrapper) ]]; then
+    export VIRTUALENV_PYTHON=/usr/bin/python3.7
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7
+    source ~/.local/bin/virtualenvwrapper.sh
+fi
+
+alias bashconfig="vim ~/.bashrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias SD="workon SD; echo 'Starting SD session:'; cd ~/Documents/Cours/M1; jupyter-notebook"
+alias nano="vim"
 
 export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
 if [[ -f $THEME ]]; then

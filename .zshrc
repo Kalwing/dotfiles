@@ -9,7 +9,7 @@ export ZSH="/home/thomas/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 TERM=xterm-256color  # Fix to get colors in vim in tmux
-ZSH_THEME="agnoster" 
+ZSH_THEME="agnoster"
 #"robbyrussell"
 
 # Set list of themes to pick from when loading at random
@@ -102,9 +102,11 @@ alias zshconfig="vim ~/.zshrc"
 alias SD="workon SD; echo 'Starting SD session:'; cd ~/Documents/Cours/M1; jupyter-notebook"
 alias nano="vim"
 # Virtualenv
-export VIRTUALENV_PYTHON=/usr/bin/python3.7
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7
-source ~/.local/bin/virtualenvwrapper.sh
+if [[ -n $(pip list | grep virtualenvwrapper) ]]; then
+     export VIRTUALENV_PYTHON=/usr/bin/python3.7
+     export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7
+     source ~/.local/bin/virtualenvwrapper.sh
+fi
 
 DEFAULT_USER="thomas"
 
