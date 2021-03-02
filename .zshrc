@@ -99,8 +99,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias SD="workon SD; echo 'Starting SD session:'; cd ~/Documents/Cours/M1; jupyter-notebook"
+alias SD="workon SD8; echo 'Starting SD session:'; cd ~/Documents/Cours/M2; jupyter lab ."
 alias nano="vim"
+alias python="python3"
 # Virtualenv
 if (( $+commands[pip])) && [[ -n $(pip list | grep virtualenvwrapper) ]]; then
      export VIRTUALENV_PYTHON=/usr/bin/python3.7
@@ -109,9 +110,22 @@ if (( $+commands[pip])) && [[ -n $(pip list | grep virtualenvwrapper) ]]; then
 fi
 
 DEFAULT_USER="thomas"
+EDITOR="vim"
 
 source ~/.gcloudrc
 
 alias mpirun="/usr/local/openmpi/bin/mpirun"
 
 alias reloadmenu="mate-panel --replace & disown"
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
+
+alias kitty="/home/thomas/.local/kitty.app/bin/kitty"
+alias icat="kitty +kitten icat"
+alias clipboard="kitty +kitten clipboard"
