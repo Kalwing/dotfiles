@@ -1,8 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+DEFAULT_USER="dargent"
 # Path to your oh-my-zsh installation.
-export ZSH="/home/thomas/.oh-my-zsh"
+export ZSH="/home/"$DEFAULT_USER"/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -70,7 +71,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages virtualenvwrapper pip common-aliases zsh-navigation-tools sudo)
+plugins=(git colored-man-pages pip common-aliases zsh-navigation-tools sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,24 +100,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias SD="workon SD8; echo 'Starting SD session:'; cd ~/Documents/Cours/M2; jupyter lab ."
 alias nano="vim"
 alias python="python3"
-# Virtualenv
-if (( $+commands[pip])) && [[ -n $(pip list | grep virtualenvwrapper) ]]; then
-     export VIRTUALENV_PYTHON=/usr/bin/python3.7
-     export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7
-     source ~/.local/bin/virtualenvwrapper.sh
-fi
 
-DEFAULT_USER="thomas"
 EDITOR="vim"
-
-source ~/.gcloudrc
-
-alias mpirun="/usr/local/openmpi/bin/mpirun"
-
-alias reloadmenu="mate-panel --replace & disown"
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=$PATH:$JAVA_HOME/bin
@@ -126,6 +113,9 @@ export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
 
-alias kitty="/home/thomas/.local/kitty.app/bin/kitty"
+alias kitty="~/.local/kitty.app/bin/kitty"
 alias icat="kitty +kitten icat"
 alias clipboard="kitty +kitten clipboard"
+
+export PATH=$PATH:/home/$DEFAULT_USER/julia/bin
+
