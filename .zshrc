@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-DEFAULT_USER="dargent"
+DEFAULT_USER="thomas"
 # Path to your oh-my-zsh installation.
 export ZSH="/home/"$DEFAULT_USER"/.oh-my-zsh"
 
@@ -9,7 +9,7 @@ export ZSH="/home/"$DEFAULT_USER"/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-TERM=xterm-256color  # Fix to get colors in vim in tmux
+export TERM=xterm-256color  # Fix to get colors in vim in tmux
 ZSH_THEME="agnoster"
 #"robbyrussell"
 
@@ -71,7 +71,19 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages pip common-aliases zsh-navigation-tools sudo)
+
+# common-aliases:
+#   l: List files as a long list, show size, type, human-readable
+#   la : List almost all files as a long list show size, type, human-readable
+#   zip, tar, rar, tar.gz: Lists files inside a .* file
+# dirhistory: alt left: prev dir, alt right: next dir, alt up: parent, alt down: first child
+# octozen : zen quote from github
+# per-directory-history: ctrl+G to switch between local and global history
+# python: pyclean [dirs] : clean bytecode and cache
+# sudo : prefix your current or previous commands with sudo by pressing esc twice
+# ubuntu :  adds completions and aliases for Ubuntu
+VSCODE=code-insiders # vsc to open the current folder in vscode # vsca to add the cur folder to last win # vscr file to last win
+plugins=(colored-man-pages common-aliases dirhistory docker emoji-clock git pip python rand-quote sudo tmux vscode kwote)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,13 +109,47 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+
+export PATH=$PATH:/usr/bin/python3.12
+export VIRTUALENV_PYTHON=/usr/bin/python3.12
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.12
+source ~/.local/bin/virtualenvwrapper.sh
+
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vimconfig="vim ~/.vimrc"
 alias nano="vim"
 alias python="python3"
+alias SD="workon SD8; echo 'Starting SD session:'; cd ~/Documents/Cours/M2; jupyter lab ."
+alias PHD="workon PHD; echo 'Starting PHD session:'; cd ~/Documents/PhD; jupyter lab ."
+# Project management
+export PROJECT_ROOT="$HOME/Documents/Project"
+CURRENT_PROJECT_FILE="$HOME/.current_project"
 
-EDITOR="vim"
+# Read current project from file if it exists
+if [[ -f "$CURRENT_PROJECT_FILE" ]]; then
+    export CURRENT_PROJECT=$(cat "$CURRENT_PROJECT_FILE")
+else
+    export CURRENT_PROJECT=""
+fi
+
+
+cd_pr() {
+    cd "$PROJECT_ROOT"
+}
+
+cd_cpr() {
+    cd "$PROJECT_ROOT/$CURRENT_PROJECT"
+}
+
+set_cpr() {
+    export CURRENT_PROJECT="$1"
+    echo "$1" > "$CURRENT_PROJECT_FILE"
+}
+
+
+export EDITOR="vim"
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=$PATH:$JAVA_HOME/bin
@@ -119,3 +165,23 @@ alias clipboard="kitty +kitten clipboard"
 
 export PATH=$PATH:/home/$DEFAULT_USER/julia/bin
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/thomas/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
+
+. "/home/thomas/.deno/env"
+
+
+echo -n "\e[1;33mQOTD\e[0;93m — $(date +%d/%m/%Y) $(date +%k:%M) \e[0m"
+emoji-clock
+fetch_kwote "https://thomasdargent.com/api/get_quote/date" 2 && echo "\e[1;90msa fé reflechir...\e[0m" || echo "No quotes today"
